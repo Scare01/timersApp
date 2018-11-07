@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment, Button, Icon } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 import TimerForm from './timerForm';
 
 class ToggleableTimerFrom extends React.Component {
