@@ -28,7 +28,7 @@ class TimerForm extends React.Component {
     const submitText = this.props.id ? 'Update' : 'Create';
 
     return (
-      <Card textAlign="center">
+      <Card>
         <Card.Content>
           <Form>
             <Form.Field>

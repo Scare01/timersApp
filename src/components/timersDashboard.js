@@ -52,10 +52,10 @@ class TimersDashboard extends React.Component {
 
     render() {
         return (
-            <Grid columns={3} textAlign="center">
+            <Grid columns={4} textAlign="center">
                 <Grid.Row>
                     <Grid.Column>
-                        <EditableTimerList timers={this.state.timers}/>
+                        <EditableTimerList timers={this.state.timers} />
                         <ToggleableTimerForm onFormSubmit={this.handleCreateFormSubmit} />    
                     </Grid.Column>
                     
