@@ -6,6 +6,7 @@ import { v4 } from 'uuid';
 
 
 
+
 class TimersDashboard extends React.Component {
    state = {
     timers: [
@@ -26,13 +27,36 @@ class TimersDashboard extends React.Component {
     ]    
    };
 
+    newTimer(attrs = {}) {
+        const timer = {
+         title: attrs.title || 'Timer',
+         project: attrs.project || 'Project',
+         id: v4(), 
+         elapsed: 0,
+        };
+
+        return timer;
+    } 
+
+
+   handleCreateFormSubmit = (timer) => {
+    this.createTimer(timer);
+   };
+
+   createTimer = (timer) => {
+    const t = this.newTimer(timer);
+    this.setState({
+        timers: this.state.timers.concat(t)
+    });
+   };
+
     render() {
         return (
             <Grid columns={3} textAlign="center">
                 <Grid.Row>
                     <Grid.Column>
                         <EditableTimerList timers={this.state.timers}/>
-                        <ToggleableTimerForm isOpen={true} />    
+                        <ToggleableTimerForm onFormSubmit={this.handleCreateFormSubmit} />    
                     </Grid.Column>
                     
                 </Grid.Row>
