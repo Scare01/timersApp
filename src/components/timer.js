@@ -51,8 +51,8 @@ class Timer extends React.Component {
             </Card.Description>
           </Card.Content>
           <Card.Content extra textAlign="right">
-            <Icon name="edit" />
-            <Icon name="trash" />    
+            <Icon name="edit" onClick={this.props.onEditClick} />
+            <Icon name="trash" onClick={this.props.onDeleteClick}/>    
           </Card.Content>
           <Button attached="bottom" color="blue">Start</Button>
         </Card>
