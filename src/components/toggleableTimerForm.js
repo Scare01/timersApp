@@ -11,11 +11,10 @@ class ToggleableTimerFrom extends React.Component {
       )
     } else {
       return (
-        <Segment textAlign="center">
-          <Button icon>
-            <Icon name="plus" />
-          </Button>
-        </Segment>
+        <Button icon>
+          <Icon name="plus" />
+        </Button>
+       
       )
     }
 
