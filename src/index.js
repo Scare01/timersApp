@@ -17,4 +17,4 @@ class TimersApp extends React.Component {
     }
 }
 
-ReactDOM.render(<TimersApp />, document.getElementById('body'));
+ReactDOM.render(<TimersApp />, document.getElementById('app'));

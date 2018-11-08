@@ -14,8 +14,9 @@ class EditableTimerList extends React.Component {
                 title={timer.title}
                 project={timer.project}
                 elapsed={timer.elapsed}
-                runnigSince={timer.runnigSince}
+                runningSince={timer.runningSince}
                 onFormSubmit={this.props.onFormSubmit}
+                onTrashClick={this.props.onTrashClick}
             />    
         ));
 

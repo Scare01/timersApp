@@ -33,8 +33,22 @@ class Timer extends React.Component {
     return padded;
   }
 
+
+  componentDidMount() {
+    this.forceUpdateInterval = setInterval(() => this.forceUpdate(), 50);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.forceUpdateInterval);
+  }
+
+  handleTrashClick = () => {
+    this.props.onTrashClick(this.props.id);
+  };
+
   render() {
-    const elapsedString = this.renderElapsedString(this.props.elapsed);
+    const elapsedString = this.renderElapsedString(
+        this.props.elapsed, this.props.runningSince);
 
 
 
@@ -52,7 +66,7 @@ class Timer extends React.Component {
           </Card.Content>
           <Card.Content extra textAlign="right">
             <Icon name="edit" onClick={this.props.onEditClick} />
-            <Icon name="trash" onClick={this.props.onDeleteClick}/>    
+            <Icon name="trash" onClick={this.handleTrashClick}/>    
           </Card.Content>
           <Button attached="bottom" color="blue">Start</Button>
         </Card>
