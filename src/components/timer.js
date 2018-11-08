@@ -1,5 +1,6 @@
 import React from 'react';
-import { Card, Icon, Button } from 'semantic-ui-react';
+import { Card, Icon } from 'semantic-ui-react';
+import TimerActionButton from './timerActionButton';
 
 
 
@@ -42,6 +43,14 @@ class Timer extends React.Component {
     clearInterval(this.forceUpdateInterval);
   }
 
+  handleStartClick = () => {
+    this.props.onStartClick(this.props.id);
+  }
+
+  handleStopClick = () => {
+    this.props.onStopClick(this.props.id);
+  }
+
   handleTrashClick = () => {
     this.props.onTrashClick(this.props.id);
   };
@@ -68,7 +77,11 @@ class Timer extends React.Component {
             <Icon name="edit" onClick={this.props.onEditClick} />
             <Icon name="trash" onClick={this.handleTrashClick}/>    
           </Card.Content>
-          <Button attached="bottom" color="blue">Start</Button>
+          <TimerActionButton
+            timerIsRunning={!!this.props.runningSince}
+            onStartClick={this.handleStartClick}
+            onStopClick={this.handleStopClick}
+          />
         </Card>
         
       

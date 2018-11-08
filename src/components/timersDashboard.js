@@ -3,6 +3,7 @@ import { Grid } from 'semantic-ui-react';
 import EditableTimerList from './editableTimerList';
 import ToggleableTimerForm from './toggleableTimerForm';
 import { v4 } from 'uuid';
+import { runInThisContext } from 'vm';
 
 
 
@@ -51,6 +52,14 @@ class TimersDashboard extends React.Component {
        this.deleteTimer(timerId);
    }
 
+   handleStartClick = (timerId) => {
+       this.startTimer(timerId);
+   }
+
+   handleStopClick = (timerId) => {
+       this.stopTimer(timerId);
+   } 
+
    createTimer = (timer) => {
     const t = this.newTimer(timer);
     this.setState({
@@ -79,6 +88,39 @@ class TimersDashboard extends React.Component {
        });
    };
 
+   startTimer = (timerId) => {
+       const now = Date.now();
+
+       this.setState({
+           timers: this.state.timers.map((timer) => {
+               if (timer.id === timerId) {
+                   return Object.assign({}, timer, {
+                       runningSince: now
+                   });
+               }else {
+                   return timer;
+               }
+           })
+       });
+   };
+
+   stopTimer = (timerId) => {
+       const now = Date.now();
+
+       this.setState({
+           timers: this.state.timers.map((timer) => {
+               if (timer.id === timerId) {
+                   const lastElapse = now - timer.runningSince;
+                   return Object.assign({}, timer, {
+                       runningSince: null
+                   });
+               }else {
+                   return timer;
+               }
+           })
+       });
+   };
+
    
 
     render() {
@@ -90,6 +132,8 @@ class TimersDashboard extends React.Component {
                           timers={this.state.timers}
                           onFormSubmit={this.handleEditFormSubmit}
                           onTrashClick={this.handleTrashClick}
+                          onStartClick={this.handleStartClick}
+                          onStopClick={this.handleStopClick}
                         />
                         <ToggleableTimerForm 
                           onFormSubmit={this.handleCreateFormSubmit} 
