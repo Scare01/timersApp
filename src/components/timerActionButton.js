@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react';
-import Timer from './timer';
+
 
 
 class TimerActionButton extends React.Component {

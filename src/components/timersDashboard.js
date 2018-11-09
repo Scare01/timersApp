@@ -3,29 +3,14 @@ import { Grid } from 'semantic-ui-react';
 import EditableTimerList from './editableTimerList';
 import ToggleableTimerForm from './toggleableTimerForm';
 import { v4 } from 'uuid';
-import { runInThisContext } from 'vm';
+
 
 
 
 
 class TimersDashboard extends React.Component {
    state = {
-    timers: [
-        {
-            title: 'Practice squat',
-            project: 'Gym Chores',
-            id: v4(),
-            elapsed: 5456099,
-            runningSince: Date.now()
-        },
-        {
-            title: 'Bake squash',
-            project: 'Kitchen Chores',
-            id: v4(),
-            elapsed: 1273998,
-            runningSince: null
-        }
-    ]    
+    timers: []    
    };
 
     newTimer(attrs = {}) {
@@ -112,6 +97,7 @@ class TimersDashboard extends React.Component {
                if (timer.id === timerId) {
                    const lastElapse = now - timer.runningSince;
                    return Object.assign({}, timer, {
+                       elapsed: timer.elapsed + lastElapse,
                        runningSince: null
                    });
                }else {
