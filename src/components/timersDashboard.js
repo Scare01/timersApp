@@ -13,7 +13,8 @@ class TimersDashboard extends React.Component {
     timers: []    
    };
 
-    newTimer(attrs = {}) {
+
+    newTimer = (attrs = {}) => {
         const timer = {
          title: attrs.title || 'Timer',
          project: attrs.project || 'Project',
@@ -22,7 +23,7 @@ class TimersDashboard extends React.Component {
         };
 
         return timer;
-    } 
+    }; 
 
 
    handleCreateFormSubmit = (timer) => {
@@ -106,6 +107,8 @@ class TimersDashboard extends React.Component {
            })
        });
    };
+
+
 
    
 
